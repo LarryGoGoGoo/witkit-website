@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" font-family="'PingFang SC','HarmonyOS Sans SC','Microsoft YaHei',-apple-system,'Segoe UI',sans-serif" role="img" aria-label="UEF 全栈执行架构分层图">
+  <title>UEF 全栈执行架构分层图</title>
+  <desc>自上而下：交互层、编排层、运行时层、治理层四层执行架构，右侧贯通 AI Engine 与 RAG 能力。</desc>
+
+  <!-- ⚠️ 图内字号必须按「实际显示宽度」定，不能按画布定。
+       这张图在 /services 的体系区块里渲染，图列加宽后显示宽度约 910px、画布 1600 → 缩放 0.57。
+       所以画布内 28px 的芯片标签，读者眼里约 16px；原先写 22px 的只有 12.5px，糊。
+       **本图最小字号锁定 28px。改字号前先算这一步，改完必须跑 `node scripts/witkit-svg-fit.mjs`**
+       —— 字号一放大，最先出问题的不是「难看」，而是文字捅出卡片/画布，
+       终端里看不出来，只能靠脚本量 getBBox（下面 AI 卡片的宽高就是这么定出来的）。 -->
+  <defs>
+    <!-- ⚠️ 必须显式关掉文字描边。下面每个芯片容器都是
+         <g fill="#FFFFFF" stroke="#E5E8EF" stroke-width="1.2">，它同时给白底矩形描边、
+         也把 stroke 继承给了里面的 <text>。1.2px 的近白描边正好糊在 28px 字的笔画上，
+         黑字被"洗"成灰字（实测最暗像素只有 150 左右），屏幕上就是「字看不清」。
+         CSS 规则的优先级高于继承来的呈现属性，所以这一行能压住。
+         删掉它，芯片标签立刻变回糊的。 -->
+    <style>text { stroke: none; }</style>
+    <linearGradient id="layerGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#0052D9"/><stop offset="1" stop-color="#006EFF"/>
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#E8ECF3" stroke-width="0.5"/>
+    </pattern>
+    <pattern id="gridFine" width="8" height="8" patternUnits="userSpaceOnUse">
+      <path d="M 8 0 L 0 0 0 8" fill="none" stroke="#F1F4F9" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+
+  <rect width="1600" height="1000" fill="#FFFFFF"/>
+  <rect width="1600" height="1000" fill="url(#gridFine)"/>
+  <rect width="1600" height="1000" fill="url(#grid)"/>
+  <ellipse cx="700" cy="0" rx="900" ry="420" fill="#EEF4FF" opacity="0.45"/>
+
+  <!-- 左侧层级轴：刻度对齐各层顶边（层块 y=130/310/490/670），轴线末端与最底层底边 y=840 齐平。
+       刻度数必须等于层块数——多一个刻度就会指向不存在的层。 -->
+  <line x1="92" y1="150" x2="92" y2="840" stroke="#D2D7E0" stroke-width="2"/>
+  <g stroke="#0052D9" stroke-width="2">
+    <line x1="84" y1="150" x2="100" y2="150"/><line x1="84" y1="330" x2="100" y2="330"/>
+    <line x1="84" y1="510" x2="100" y2="510"/><line x1="84" y1="690" x2="100" y2="690"/>
+  </g>
+  <g text-anchor="end" fill="#0052D9" font-size="30" font-weight="600">
+    <text x="66" y="158">L4</text><text x="66" y="338">L3</text>
+    <text x="66" y="518">L2</text><text x="66" y="698">L1</text>
+  </g>
+
+  <!-- 四层 -->
+  <g>
+    <rect x="130" y="130" width="800" height="170" rx="16" fill="#F6F7F9" stroke="#E5E8EF" stroke-width="1.4"/>
+    <rect x="130" y="130" width="6" height="170" fill="url(#layerGrad)"/>
+    <text x="172" y="184" fill="#0B0F19" font-size="43" font-weight="700">交互层</text>
+    <text x="172" y="222" fill="#4E5969" font-size="28">Web · 移动端 · 开放 API · 开发者门户</text>
+    <g fill="#FFFFFF" stroke="#E5E8EF" stroke-width="1.2">
+      <rect x="172" y="242" width="176" height="44" rx="9"/><text x="260" y="270" text-anchor="middle" fill="#0B0F19" font-size="28">Web 端</text>
+      <rect x="360" y="242" width="176" height="44" rx="9"/><text x="448" y="270" text-anchor="middle" fill="#0B0F19" font-size="28">移动端</text>
+      <rect x="548" y="242" width="176" height="44" rx="9"/><text x="636" y="270" text-anchor="middle" fill="#0B0F19" font-size="28">开放 API</text>
+      <rect x="736" y="242" width="176" height="44" rx="9"/><text x="824" y="270" text-anchor="middle" fill="#0B0F19" font-size="28">开发者门户</text>
+    </g>
+  </g>
+
+  <g>
+    <rect x="130" y="310" width="800" height="170" rx="16" fill="#F6F7F9" stroke="#E5E8EF" stroke-width="1.4"/>
+    <rect x="130" y="310" width="6" height="170" fill="url(#layerGrad)"/>
+    <text x="172" y="364" fill="#0B0F19" font-size="43" font-weight="700">编排层</text>
+    <text x="172" y="402" fill="#4E5969" font-size="28">能力注册 · 流程编排 · 灰度发布</text>
+    <g fill="#FFFFFF" stroke="#E5E8EF" stroke-width="1.2">
+      <rect x="172" y="422" width="234" height="44" rx="9"/><text x="289" y="450" text-anchor="middle" fill="#0B0F19" font-size="28">能力注册</text>
+      <rect x="418" y="422" width="234" height="44" rx="9"/><text x="535" y="450" text-anchor="middle" fill="#0B0F19" font-size="28">流程编排</text>
+      <rect x="664" y="422" width="248" height="44" rx="9"/><text x="788" y="450" text-anchor="middle" fill="#0B0F19" font-size="28">灰度发布</text>
+    </g>
+  </g>
+
+  <g>
+    <rect x="130" y="490" width="800" height="170" rx="16" fill="#F6F7F9" stroke="#E5E8EF" stroke-width="1.4"/>
+    <rect x="130" y="490" width="6" height="170" fill="url(#layerGrad)"/>
+    <text x="172" y="544" fill="#0B0F19" font-size="43" font-weight="700">运行时层</text>
+    <text x="172" y="582" fill="#4E5969" font-size="28">编译 · 调试 · 部署 · 协作</text>
+    <g fill="#FFFFFF" stroke="#E5E8EF" stroke-width="1.2">
+      <rect x="172" y="602" width="176" height="44" rx="9"/><text x="260" y="630" text-anchor="middle" fill="#0B0F19" font-size="28">编译</text>
+      <rect x="360" y="602" width="176" height="44" rx="9"/><text x="448" y="630" text-anchor="middle" fill="#0B0F19" font-size="28">调试</text>
+      <rect x="548" y="602" width="176" height="44" rx="9"/><text x="636" y="630" text-anchor="middle" fill="#0B0F19" font-size="28">部署</text>
+      <rect x="736" y="602" width="176" height="44" rx="9"/><text x="824" y="630" text-anchor="middle" fill="#0B0F19" font-size="28">协作</text>
+    </g>
+  </g>
+
+  <g>
+    <rect x="130" y="670" width="800" height="170" rx="16" fill="#F6F7F9" stroke="#E5E8EF" stroke-width="1.4"/>
+    <rect x="130" y="670" width="6" height="170" fill="url(#layerGrad)"/>
+    <text x="172" y="724" fill="#0B0F19" font-size="43" font-weight="700">治理层</text>
+    <text x="172" y="762" fill="#4E5969" font-size="28">策略 · 审计 · 默认安全</text>
+    <g fill="#FFFFFF" stroke="#E5E8EF" stroke-width="1.2">
+      <rect x="172" y="782" width="234" height="44" rx="9"/><text x="289" y="810" text-anchor="middle" fill="#0B0F19" font-size="28">策略引擎</text>
+      <rect x="418" y="782" width="234" height="44" rx="9"/><text x="535" y="810" text-anchor="middle" fill="#0B0F19" font-size="28">审计日志</text>
+      <rect x="664" y="782" width="248" height="44" rx="9"/><text x="788" y="810" text-anchor="middle" fill="#0B0F19" font-size="28">默认安全</text>
+    </g>
+  </g>
+
+  <!-- 右侧 AI Engine 贯通列 -->
+  <line x1="990" y1="150" x2="990" y2="840" stroke="#0052D9" stroke-width="1.8" opacity="0.3"/>
+  <rect x="1000" y="270" width="500" height="480" rx="18" fill="#EEF4FF" stroke="#0052D9" stroke-width="1.8"/>
+  <circle cx="1040" cy="308" r="5" fill="#0052D9"/>
+  <text x="1062" y="318" fill="#0052D9" font-size="35" font-weight="700">AI Engine</text>
+  <text x="1062" y="358" fill="#4E5969" font-size="28">大语言模型 · RAG 检索增强</text>
+
+  <!-- 字号整体放大后，卡片必须跟着长高、加宽：
+       ① 高 62 → 76：29px 标题 + 28px 副标两行在原高度里会顶出卡片上沿；
+       ② 宽 404 → 430：最长那条副标「智能错误分析 · 可执行修改建议」实际渲染 388 宽，
+          原卡片内宽只有 378，一律出框（scripts/witkit-svg-fit.mjs 会报）。 -->
+  <g fill="#FFFFFF" stroke="#E5E8EF" stroke-width="1.2">
+    <rect x="1036" y="386" width="430" height="76" rx="10"/><text x="1062" y="418" fill="#0B0F19" font-size="29" font-weight="600">AI 教学</text><text x="1062" y="448" fill="#4E5969" font-size="28">按项目上下文作答 · 逐行解读</text>
+    <rect x="1036" y="474" width="430" height="76" rx="10"/><text x="1062" y="506" fill="#0B0F19" font-size="29" font-weight="600">代码审查</text><text x="1062" y="536" fill="#4E5969" font-size="28">智能错误分析 · 可执行修改建议</text>
+    <rect x="1036" y="562" width="430" height="76" rx="10"/><text x="1062" y="594" fill="#0B0F19" font-size="29" font-weight="600">结对编程</text><text x="1062" y="624" fill="#4E5969" font-size="28">人机协作 · 实时补全</text>
+    <rect x="1036" y="650" width="430" height="76" rx="10"/><text x="1062" y="682" fill="#0B0F19" font-size="29" font-weight="600">智能错误分析</text><text x="1062" y="712" fill="#4E5969" font-size="28">报错信息翻译为可执行方案</text>
+  </g>
+
+  <g stroke="#0052D9" stroke-width="1.4" opacity="0.45" stroke-dasharray="4 5">
+    <line x1="990" y1="215" x2="938" y2="215"/>
+    <line x1="990" y1="395" x2="938" y2="395"/>
+    <line x1="990" y1="575" x2="938" y2="575"/>
+    <line x1="990" y1="755" x2="938" y2="755"/>
+  </g>
+</svg>

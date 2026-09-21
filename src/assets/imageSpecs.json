@@ -1,0 +1,355 @@
+{
+  "_note": "官网图片位清单 · 单一源。组件从这里取尺寸与内容说明，scripts/images-status.mjs 也从这里读，两边不会走偏。改规格只改这个文件。slots 里的 slot 字段就是 src/assets/images 下的相对路径（不带扩展名）。priority：必做 = 影响第一眼观感；建议 = 页面更「有东西」；可选 = 上线前补或不做也行。 unused=true 表示规格保留、但当前没有任何页面引用它（板块已被删除），进度统计不计入。",
+  "slots": [
+    {
+      "slot": "logo-witkit",
+      "where": "全站顶栏",
+      "ratio": "5.25 / 1",
+      "px": "630 × 120 px（由用户原图裁边缩放而来，源图 1923 × 817）",
+      "format": "PNG（已到位，白底保留）",
+      "content": "witkit 妙计 横版双语 lockup · 蓝字版（浅底用）。字标就是「witkit」+「妙计」两个词，不带「科技」二字 —— 这是定稿口径，不是漏字，别去补",
+      "priority": "必做",
+      "external": false
+    },
+    {
+      "slot": "logo-witkit-inverse",
+      "where": "全站页脚",
+      "ratio": "5.25 / 1",
+      "px": "630 × 120 px（由 logo-witkit 自动生成的反白版）",
+      "format": "PNG（已到位，透明底白字）",
+      "content": "同上，白字透明底版（深色底用）。字标同样只有 witkit + 妙计。用户提供正式反白版后直接替换即可",
+      "priority": "必做",
+      "external": false
+    },
+    {
+      "slot": "favicon",
+      "where": "浏览器标签页图标",
+      "ratio": "1 / 1",
+      "px": "512 × 512 px",
+      "format": "PNG，透明底",
+      "content": "witkit 图形标识（W 字母或品牌符号），必须正方形",
+      "priority": "必做",
+      "external": true,
+      "publicPath": "/favicon.png"
+    },
+    {
+      "slot": "hero-bg",
+      "where": "未使用（首屏 2026-09-20 改纯黑底 + 真实 HTML 大字，弃用 AI 夜景图）",
+      "ratio": "auto",
+      "px": "2880 × 1620 px",
+      "format": "JPG / WebP，≤ 500KB",
+      "content": "已弃用。首屏回归苹果 Pro 做法：纯黑底 + 极淡品牌蓝光晕，不铺背景图",
+      "priority": "必做",
+      "external": false,
+      "unused": true
+    },
+    {
+      "slot": "hero-word",
+      "where": "未使用（首屏 2026-09-20 改真实 HTML 大字，弃用 AI 立体字图）",
+      "ratio": "auto",
+      "px": "2880 × 1620 px",
+      "format": "WebP，透明底",
+      "content": "已弃用。立体字图是 AI 生成、糊且假，改回真实字体渲染，不用图片",
+      "priority": "必做",
+      "external": false,
+      "unused": true
+    },
+    {
+      "slot": "icons/ide",
+      "where": "未使用（首页产品矩阵已删除，规格先留着）",
+      "ratio": "1 / 1",
+      "px": "96 × 96 px",
+      "format": "SVG 优先，否则透明底 PNG @2x",
+      "content": "E时代IDE 产品图标：能一眼认出是「开发工具」的图形标识",
+      "priority": "建议",
+      "external": false,
+      "unused": true
+    },
+    {
+      "slot": "icons/cloud",
+      "where": "未使用（首页产品矩阵已删除，规格先留着）",
+      "ratio": "1 / 1",
+      "px": "96 × 96 px",
+      "format": "SVG 优先，否则透明底 PNG @2x",
+      "content": "E时代云服务 产品图标",
+      "priority": "建议",
+      "external": false,
+      "unused": true
+    },
+    {
+      "slot": "icons/weauth",
+      "where": "未使用（首页产品矩阵已删除，规格先留着）",
+      "ratio": "1 / 1",
+      "px": "96 × 96 px",
+      "format": "SVG 优先，否则透明底 PNG @2x",
+      "content": "WeAuth 微验 产品图标",
+      "priority": "建议",
+      "external": false,
+      "unused": true
+    },
+    {
+      "slot": "icons/ecd",
+      "where": "未使用（首页产品矩阵已删除，规格先留着）",
+      "ratio": "1 / 1",
+      "px": "96 × 96 px",
+      "format": "SVG 优先，否则透明底 PNG @2x",
+      "content": "E时代云数据库 产品图标",
+      "priority": "建议",
+      "external": false,
+      "unused": true
+    },
+    {
+      "slot": "icons/eoss",
+      "where": "未使用（首页产品矩阵已删除，规格先留着）",
+      "ratio": "1 / 1",
+      "px": "96 × 96 px",
+      "format": "SVG 优先，否则透明底 PNG @2x",
+      "content": "E时代云存储 产品图标",
+      "priority": "建议",
+      "external": false,
+      "unused": true
+    },
+    {
+      "slot": "icons/trust",
+      "where": "未使用（首页产品矩阵已删除，规格先留着）",
+      "ratio": "1 / 1",
+      "px": "96 × 96 px",
+      "format": "SVG 优先，否则透明底 PNG @2x",
+      "content": "E时代信任中心 产品图标",
+      "priority": "可选",
+      "external": false,
+      "unused": true
+    },
+    {
+      "slot": "products/ide",
+      "where": "产品页卡片 · IDE 详情页",
+      "ratio": "16 / 10",
+      "px": "1440 × 900 px",
+      "format": "PNG / WebP（2x 图 2880 × 1800）",
+      "content": "编辑器主界面：代码区 + AI 侧栏 + 文件目录树",
+      "priority": "必做",
+      "external": false
+    },
+    {
+      "slot": "products/cloud",
+      "where": "产品页卡片 · 云服务详情页",
+      "ratio": "16 / 10",
+      "px": "1440 × 900 px",
+      "format": "PNG / WebP（2x 图 2880 × 1800）",
+      "content": "云控制台总览：资源卡片 + 用量图表",
+      "priority": "必做",
+      "external": false
+    },
+    {
+      "slot": "products/weauth",
+      "where": "产品页卡片 · WeAuth 详情页",
+      "ratio": "16 / 10",
+      "px": "1440 × 900 px",
+      "format": "PNG / WebP（2x 图 2880 × 1800）",
+      "content": "验证组件嵌入业务页面的实际效果，或验证管理后台",
+      "priority": "必做",
+      "external": false
+    },
+    {
+      "slot": "products/ecd",
+      "where": "产品页卡片 · 云数据库详情页",
+      "ratio": "16 / 10",
+      "px": "1440 × 900 px",
+      "format": "SVG（矢量，已到位）",
+      "content": "图标 + 名称 + 副标题的产品识别图：图标=数据库，名称 E时代云数据库，副标题 Enterprise Cloud Database（取自 ECD 控制台真实标题）",
+      "priority": "必做",
+      "external": false
+    },
+    {
+      "slot": "products/eoss",
+      "where": "产品页卡片 · 云存储详情页",
+      "ratio": "16 / 10",
+      "px": "1440 × 900 px",
+      "format": "SVG（矢量，已到位）",
+      "content": "图标 + 名称 + 副标题的产品识别图：图标=云朵，名称 E时代云存储，副标题 企业级对象存储服务（取自 EOSS 控制台真实标语）",
+      "priority": "必做",
+      "external": false
+    },
+    {
+      "slot": "products/trust",
+      "where": "产品页 · 信任中心详情页",
+      "ratio": "16 / 10",
+      "px": "1440 × 900 px",
+      "format": "SVG（矢量，已到位）",
+      "content": "图标 + 名称 + 副标题的产品识别图：图标=盾牌，名称 E时代信任中心，副标题 TRUST CENTER（取自信任中心站真实标题）",
+      "priority": "可选",
+      "external": false
+    },
+    {
+      "slot": "services/overview",
+      "where": "服务页（/services）头部主视觉",
+      "ratio": "16 / 9",
+      "px": "1600 × 900 px",
+      "format": "PNG / WebP / SVG",
+      "content": "三层技术体系总览图：HEC / UEF / CEP 之间的关系与分层",
+      "priority": "建议",
+      "external": false
+    },
+    {
+      "slot": "systems/hec",
+      "where": "服务页 /hec 体系页的图侧（与 TechDiagram 画的架构图并列）",
+      "ratio": "8 / 5",
+      "px": "1600 × 1000 px",
+      "format": "SVG 优先（矢量，缩放到任何宽度都不糊）/ PNG",
+      "content": "体系示意图。当前放的是矢量示意图（架构图候选/services-*.svg 分化而来）；有成品渲染图可直接替换，文件名对上即生效",
+      "priority": "建议",
+      "external": false
+    },
+    {
+      "slot": "systems/uef",
+      "where": "服务页 /uef 体系页的图侧（与 TechDiagram 画的架构图并列）",
+      "ratio": "8 / 5",
+      "px": "1600 × 1000 px",
+      "format": "SVG 优先（矢量，缩放到任何宽度都不糊）/ PNG",
+      "content": "体系示意图。当前放的是矢量示意图（架构图候选/services-*.svg 分化而来）；有成品渲染图可直接替换，文件名对上即生效",
+      "priority": "建议",
+      "external": false
+    },
+    {
+      "slot": "systems/cep",
+      "where": "服务页 /cep 体系页的图侧（与 TechDiagram 画的架构图并列）",
+      "ratio": "8 / 5",
+      "px": "1600 × 1000 px",
+      "format": "SVG 优先（矢量，缩放到任何宽度都不糊）/ PNG",
+      "content": "体系示意图。当前放的是矢量示意图（架构图候选/services-*.svg 分化而来）；有成品渲染图可直接替换，文件名对上即生效",
+      "priority": "建议",
+      "external": false
+    },
+    {
+      "slot": "labs/miaoji",
+      "where": "未使用（实验室是站外独立站点，官网上没有它的位置；图片已挪到 .archive/unused-images/）",
+      "content": "不需要配图 —— 站外站点（home.miaojilab.cn），官网只放外链",
+      "priority": "建议",
+      "external": false,
+      "unused": true
+    },
+    {
+      "slot": "labs/qifa",
+      "where": "未使用（实验室是站外独立站点，官网上没有它的位置；图片已挪到 .archive/unused-images/）",
+      "content": "不需要配图 —— 站外站点（www.qifalab.cn），E时代协会的算法与开发中心",
+      "priority": "建议",
+      "external": false,
+      "unused": true
+    },
+    {
+      "slot": "careers/office",
+      "where": "未使用（加入我们页已删除，2026-09-20 起「加入我们」直接跳首页联系我们锚点）",
+      "ratio": "2 / 1",
+      "px": "2000 × 1000 px",
+      "format": "JPG / WebP",
+      "content": "办公环境全景，横幅构图。使用实拍照片",
+      "priority": "建议",
+      "external": false,
+      "unused": true
+    },
+    {
+      "slot": "careers/culture-1",
+      "where": "未使用（加入我们页已删除）",
+      "ratio": "4 / 3",
+      "px": "1200 × 900 px",
+      "format": "JPG / WebP，单张 < 300KB",
+      "content": "工位 / 白板讨论 / 代码评审的日常场景",
+      "priority": "可选",
+      "external": false,
+      "unused": true
+    },
+    {
+      "slot": "careers/culture-2",
+      "where": "未使用（加入我们页已删除）",
+      "ratio": "4 / 3",
+      "px": "1200 × 900 px",
+      "format": "JPG / WebP，单张 < 300KB",
+      "content": "团队活动或技术分享现场",
+      "priority": "可选",
+      "external": false,
+      "unused": true
+    },
+    {
+      "slot": "careers/culture-3",
+      "where": "未使用（加入我们页已删除）",
+      "ratio": "4 / 3",
+      "px": "1200 × 900 px",
+      "format": "JPG / WebP，单张 < 300KB",
+      "content": "新人带教或结对编程场景",
+      "priority": "可选",
+      "external": false,
+      "unused": true
+    },
+    {
+      "slot": "about/company",
+      "where": "关于页 · 公司简介整屏页配图（左字右图）",
+      "ratio": "8 / 5",
+      "px": "1600 × 1000 px",
+      "format": "JPG / WebP",
+      "content": "办公楼外观或办公环境实拍。使用实拍照片，不用素材图库中的通用办公楼。横构图",
+      "priority": "必做",
+      "external": false
+    },
+    {
+      "slot": "about/vision",
+      "where": "关于页 · 愿景及使命整屏页配图（左字右图）",
+      "ratio": "8 / 5",
+      "px": "1600 × 1000 px",
+      "format": "JPG / WebP",
+      "content": "团队工作场景：白板讨论、结对编程、屏幕前的侧影。画面里要有人正在做事，不使用合影摆拍",
+      "priority": "必做",
+      "external": false
+    },
+    {
+      "slot": "about/value-open",
+      "where": "关于页 · 企业文化整屏页背景（第 1 条 开放，字压在图上面）",
+      "ratio": "auto",
+      "px": "2880 × 1620 px",
+      "format": "JPG / WebP",
+      "content": "与「开放」呼应：公开的资料墙、多人围桌讨论、白板上的分歧。整屏铺满用，画面要深色调、上半部留得出白字空间",
+      "priority": "建议",
+      "external": false
+    },
+    {
+      "slot": "about/value-inclusive",
+      "where": "关于页 · 企业文化整屏页背景（第 2 条 包容，字压在图上面）",
+      "ratio": "auto",
+      "px": "2880 × 1620 px",
+      "format": "JPG / WebP",
+      "content": "与「包容」呼应：各不相同的工作台、不同风格的人在协作。整屏铺满用，深色调、留得出白字空间",
+      "priority": "建议",
+      "external": false
+    },
+    {
+      "slot": "about/value-sincere",
+      "where": "关于页 · 企业文化整屏页背景（第 3 条 真诚，字压在图上面）",
+      "ratio": "auto",
+      "px": "2880 × 1620 px",
+      "format": "JPG / WebP",
+      "content": "与「真诚」呼应：手写便签、被划掉重写的方案稿、真实的工作台细节。整屏铺满用，深色调、留得出白字空间",
+      "priority": "建议",
+      "external": false
+    },
+    {
+      "slot": "about/value-passion",
+      "where": "关于页 · 企业文化整屏页背景（第 4 条 热爱，字压在图上面）",
+      "ratio": "auto",
+      "px": "2880 × 1620 px",
+      "format": "JPG / WebP",
+      "content": "与「热爱」呼应：专注的侧影、屏幕前的深夜、自己产品正在被使用的画面。整屏铺满用，深色调、留得出白字空间",
+      "priority": "建议",
+      "external": false
+    },
+    {
+      "slot": "og-cover",
+      "where": "微信 / 群聊分享缩略图",
+      "ratio": "40 / 21",
+      "px": "1200 × 630 px",
+      "format": "PNG",
+      "content": "左侧留 logo 位，右侧一句主张（如「三大自研技术体系」）",
+      "priority": "可选",
+      "external": true,
+      "publicPath": "/og-cover.png"
+    }
+  ]
+}

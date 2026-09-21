@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" font-family="'PingFang SC','HarmonyOS Sans SC','Microsoft YaHei',-apple-system,'Segoe UI',sans-serif" role="img" aria-label="CEP 企业级云能力平台架构图">
+  <title>CEP 企业级云能力平台架构图</title>
+  <desc>数据节点（MySQL、PostgreSQL、S3 对象存储、PoW 验证节点）汇聚到 CEP 云平台，输出云数据库、云存储、人机验证三类能力，由统一控制面治理。</desc>
+
+  <!-- ⚠️ 图内字号必须按「实际显示宽度」定，不能按画布定。
+       这张图在 /services 的体系区块里渲染，画布 1600 与显示宽度是两个尺度 ——
+       画布内 22px 的字读者眼里只有 11px 上下，必糊。
+       所以本图最小字号锁在 24px，正文一律 28px 起。
+       **改字号后必须跑 `node scripts/witkit-svg-fit.mjs`**：字号一放大，最先出问题的
+       不是「难看」，而是文字捅出卡片/画布（终端里看不出来，只能靠脚本量 getBBox）。
+       卡片宽高是按当前字号配的，不要把字号改回去而不动卡片。
+       页面文字列已承载体系名与关键指标，图内**不再重复指标**。 -->
+  <defs>
+    <!-- ⚠️ 必须显式关掉文字描边。左侧数据节点那个
+         <g fill="#FFFFFF" stroke="#E5E8EF" stroke-width="1.4"> 同时给白底矩形描边，
+         也把 stroke 继承给了里面的 <text>。近白描边糊在笔画上，黑字会被"洗"成灰字。
+         CSS 规则优先级高于继承来的呈现属性，所以这一行能压住。删掉就立刻变糊。 -->
+    <style>text { stroke: none; }</style>
+    <linearGradient id="hubGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0052D9"/><stop offset="1" stop-color="#0043B5"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#EEF4FF" stop-opacity="0.85"/>
+      <stop offset="1" stop-color="#EEF4FF" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#E8ECF3" stroke-width="0.5"/>
+    </pattern>
+    <pattern id="gridFine" width="8" height="8" patternUnits="userSpaceOnUse">
+      <path d="M 8 0 L 0 0 0 8" fill="none" stroke="#F1F4F9" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="#0052D9" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <rect width="1600" height="1000" fill="#FFFFFF"/>
+  <rect width="1600" height="1000" fill="url(#gridFine)"/>
+  <rect width="1600" height="1000" fill="url(#grid)"/>
+  <ellipse cx="1050" cy="500" rx="640" ry="520" fill="url(#glow)"/>
+
+  <!-- 左侧数据节点集群 -->
+  <rect x="60" y="150" width="420" height="700" rx="18" fill="none" stroke="#D2D7E0" stroke-width="1.4" stroke-dasharray="6 6"/>
+  <text x="86" y="132" fill="#4E5969" font-size="24" letter-spacing="3">DATA CLUSTER</text>
+  <g fill="#FFFFFF" stroke="#E5E8EF" stroke-width="1.4">
+    <rect x="92" y="196" width="356" height="140" rx="12"/>
+    <text x="270" y="256" text-anchor="middle" fill="#0B0F19" font-size="34" font-weight="600">MySQL</text>
+    <text x="270" y="296" text-anchor="middle" fill="#4E5969" font-size="24">关系型引擎 · 主实例</text>
+
+    <rect x="92" y="360" width="356" height="140" rx="12"/>
+    <text x="270" y="420" text-anchor="middle" fill="#0B0F19" font-size="34" font-weight="600">PostgreSQL</text>
+    <text x="270" y="460" text-anchor="middle" fill="#4E5969" font-size="24">关系型引擎 · 双引擎可用</text>
+
+    <rect x="92" y="524" width="356" height="140" rx="12"/>
+    <text x="270" y="584" text-anchor="middle" fill="#0B0F19" font-size="34" font-weight="600">S3 对象存储</text>
+    <text x="270" y="624" text-anchor="middle" fill="#4E5969" font-size="24">标准兼容 · 多密钥管理</text>
+
+    <rect x="92" y="688" width="356" height="140" rx="12"/>
+    <text x="270" y="748" text-anchor="middle" fill="#0B0F19" font-size="34" font-weight="600">PoW 验证节点</text>
+    <text x="270" y="788" text-anchor="middle" fill="#4E5969" font-size="24">工作量证明 · 动态风控</text>
+  </g>
+
+  <!-- 汇聚连线：四条曲线先汇到一点，再由**一支**箭头送进 CEP。
+       原先这里是三支 52px 的平行短箭头，间距只有 14px，在屏幕上糊成一撮乱线
+       （复核时被指为「像乱线而不是有意义的标注」），所以改成单支。
+       起点 x 跟着左侧卡片右沿（448）走，别留在旧值上 —— 曲线起点悬空一眼能看出来。 -->
+  <g stroke="#0052D9" stroke-width="2.4" fill="none" opacity="0.45">
+    <path d="M 452 266 C 540 266, 545 430, 596 486"/>
+    <path d="M 452 430 C 525 430, 545 470, 596 490"/>
+    <path d="M 452 594 C 525 594, 545 530, 596 512"/>
+    <path d="M 452 758 C 540 758, 545 570, 596 516"/>
+  </g>
+  <line x1="596" y1="499" x2="646" y2="499" stroke="#0052D9" stroke-width="3" marker-end="url(#arr)"/>
+
+  <!-- 中心 CEP。
+       ⚠️ 这里**不放**英文全称 "CLOUD EVOLUTION PLATFORM"：
+       ① 页面标题那一行已经写着「CEP  Cloud Evolution Platform」，图内再写一遍是重复；
+       ② 24 个字母在放大后的字号下必超 380px 的蓝框（可用宽度只有 300），
+          上一轮复核报「首字母 C 被裁掉」就是这个原因。 -->
+  <rect x="660" y="410" width="380" height="220" rx="24" fill="url(#hubGrad)"/>
+  <rect x="660" y="410" width="380" height="220" rx="24" fill="none" stroke="#0052D9" stroke-width="1.8"/>
+  <text x="850" y="518" text-anchor="middle" fill="#FFFFFF" font-size="72" font-weight="700">CEP</text>
+  <text x="850" y="574" text-anchor="middle" fill="#DCE8FF" font-size="34">云能力平台</text>
+
+  <!-- 输出连线：同样汇到一点后单支送出去。终点 1086 紧贴右侧卡片左沿（1110），留出箭头长度。 -->
+  <g stroke="#0052D9" stroke-width="2.4" fill="none" opacity="0.45">
+    <path d="M 1040 470 C 1075 470, 1072 280, 1086 280"/>
+    <path d="M 1040 520 C 1068 520, 1068 520, 1086 520"/>
+    <path d="M 1040 570 C 1075 570, 1072 760, 1086 760"/>
+  </g>
+  <g stroke="#0052D9" stroke-width="3">
+    <line x1="1086" y1="280" x2="1104" y2="280" marker-end="url(#arr)"/>
+    <line x1="1086" y1="520" x2="1104" y2="520" marker-end="url(#arr)"/>
+    <line x1="1086" y1="760" x2="1104" y2="760" marker-end="url(#arr)"/>
+  </g>
+
+  <!-- 三类能力卡片：列左沿从 1200 挪到 1110、宽 360 → 450。
+       原因只有一个：「MySQL / PostgreSQL 双引擎」放大后实测渲染 371 宽，
+       原卡片内宽只有 280，装不下（scripts/witkit-svg-fit.mjs 报越界 + 出框）。
+       宁可把卡片加宽，也不把字号退回去 —— 退回去就是「字看不清」的老问题。 -->
+  <rect x="1110" y="200" width="450" height="160" rx="16" fill="#F6F7F9" stroke="#E5E8EF" stroke-width="1.4"/>
+  <rect x="1110" y="200" width="6" height="160" fill="#0052D9"/>
+  <text x="1150" y="262" fill="#0B0F19" font-size="38" font-weight="700">云数据库 ECD</text>
+  <text x="1150" y="306" fill="#4E5969" font-size="28">MySQL / PostgreSQL 双引擎</text>
+  <text x="1150" y="338" fill="#4E5969" font-size="28">配额弹性调整</text>
+
+  <rect x="1110" y="440" width="450" height="160" rx="16" fill="#F6F7F9" stroke="#E5E8EF" stroke-width="1.4"/>
+  <rect x="1110" y="440" width="6" height="160" fill="#0052D9"/>
+  <text x="1150" y="502" fill="#0B0F19" font-size="38" font-weight="700">云存储 EOSS</text>
+  <text x="1150" y="546" fill="#4E5969" font-size="28">标准 S3 协议兼容</text>
+  <text x="1150" y="578" fill="#4E5969" font-size="28">权限策略 · 多密钥管理</text>
+
+  <rect x="1110" y="680" width="450" height="160" rx="16" fill="#F6F7F9" stroke="#E5E8EF" stroke-width="1.4"/>
+  <rect x="1110" y="680" width="6" height="160" fill="#0052D9"/>
+  <text x="1150" y="742" fill="#0B0F19" font-size="38" font-weight="700">人机验证 WeAuth</text>
+  <text x="1150" y="786" fill="#4E5969" font-size="28">PoW 工作量证明</text>
+  <text x="1150" y="818" fill="#4E5969" font-size="28">正常用户无需点选图片</text>
+
+  <!-- 统一控制面（并入中心框下方的说明，不再单独成块 —— 原先它和「统一控制面」之间
+       还连着一条短竖线，加上 PoW 那条绕行曲线从旁边经过，容易看成线团）。 -->
+  <rect x="660" y="700" width="380" height="72" rx="16" fill="#FFFFFF" stroke="#E5E8EF" stroke-width="1.4"/>
+  <text x="850" y="746" text-anchor="middle" fill="#4E5969" font-size="26">统一控制面 · 配额与监控</text>
+</svg>

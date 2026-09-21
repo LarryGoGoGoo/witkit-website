@@ -1,0 +1,46 @@
+{
+  "name": "witkit-website",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && node scripts/clean-dist.mjs && vite build",
+    "preview": "vite preview",
+    "check:tokens": "node src/styles/check.mjs",
+    "check:images": "node scripts/images-status.mjs",
+    "docs:images": "node scripts/images-manifest.mjs",
+    "check:i18n": "node scripts/build-i18n.mjs --check",
+    "i18n": "node scripts/build-i18n.mjs",
+    "check:all": "node src/styles/check.mjs && node scripts/check-dead-css.mjs && node scripts/images-status.mjs && biome check src scripts && node scripts/build-i18n.mjs --check && vue-tsc --noEmit",
+    "check:accept": "node scripts/witkit-i18n-check.mjs",
+    "check:links": "node scripts/witkit-links-check.mjs",
+    "check:visual": "node scripts/witkit-visual-check.mjs",
+    "check:diagram": "node scripts/witkit-diagram-check.mjs",
+    "check:services": "node scripts/witkit-services-check.mjs",
+    "check:scroll": "node scripts/witkit-scroll-check.mjs",
+    "check:css": "node scripts/check-dead-css.mjs",
+    "check:hero": "node scripts/check-hero.mjs",
+    "check:svg": "node scripts/witkit-svg-fit.mjs && node scripts/witkit-svg-legibility.mjs",
+    "check:ui": "node scripts/witkit-links-check.mjs && node scripts/witkit-i18n-check.mjs && node scripts/witkit-services-check.mjs && node scripts/witkit-scroll-check.mjs && node scripts/witkit-visual-check.mjs && node scripts/witkit-diagram-check.mjs",
+    "shots": "node scripts/witkit-shots.mjs",
+    "shots:header": "node scripts/witkit-header-shot.mjs",
+    "shots:about": "node scripts/witkit-about-shot.mjs",
+    "lint": "biome check src scripts"
+  },
+  "dependencies": {
+    "opencc-js": "^1.4.2",
+    "vue": "^3.5.13",
+    "vue-router": "^4.5.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.0",
+    "@tailwindcss/vite": "^4.0.0",
+    "@vitejs/plugin-vue": "^5.2.1",
+    "playwright": "^1.63.0",
+    "tailwindcss": "^4.0.0",
+    "typescript": "^5.7.0",
+    "vite": "^6.2.0",
+    "vue-tsc": "^2.2.0"
+  }
+}

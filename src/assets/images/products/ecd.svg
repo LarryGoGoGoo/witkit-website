@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 450" font-family="'PingFang SC','HarmonyOS Sans SC','Microsoft YaHei',-apple-system,'Segoe UI',sans-serif" role="img" aria-label="E时代云数据库">
+  <title>E时代云数据库</title>
+
+  <!-- 产品识别图：图标 + 名称 + 副标题，图标与文字组垂直居中（同一条线）。
+       三张产品图（ecd/eoss/trust）共用同一套坐标，产品页里图标与文字严格对齐：
+         图标容器 x=64 y=165（120×120，中心 124,225）
+         名称 baseline y=215（34px 粗体）
+         副标题 baseline y=255（21px 灰）
+       产品卡实际渲染约 358px 宽 → 缩放 0.497，名称≈17px、副标题≈10px、图标≈60px，清晰可读。
+       副标题「Enterprise Cloud Database」取自 ECD 控制台真实界面标题，非杜撰。 -->
+  <rect width="720" height="450" fill="#FFFFFF"/>
+
+  <!-- 图标容器 -->
+  <rect x="64" y="165" width="120" height="120" rx="28" fill="#EEF4FF"/>
+
+  <!-- 数据库图标 -->
+  <g transform="translate(88,189) scale(3)" fill="none" stroke="#0052D9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <ellipse cx="12" cy="5" rx="9" ry="3"/>
+    <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+    <path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"/>
+  </g>
+
+  <!-- 名称 + 副标题 -->
+  <text x="224" y="215" font-size="34" font-weight="700" fill="#0B0F19">E时代云数据库</text>
+  <text x="224" y="255" font-size="21" fill="#4E5969">Enterprise Cloud Database</text>
+</svg>

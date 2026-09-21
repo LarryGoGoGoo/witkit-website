@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" font-family="'PingFang SC','HarmonyOS Sans SC','Microsoft YaHei',-apple-system,'Segoe UI',sans-serif" role="img" aria-label="三大自研技术体系总览架构图">
+  <title>三大自研技术体系总览架构图</title>
+  <desc>自下而上：CEP 企业级云平台、UEF 全栈执行架构、HEC 全域互联授权，向上支撑七款产品。</desc>
+
+  <defs>
+    <linearGradient id="barGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#0052D9"/><stop offset="1" stop-color="#006EFF"/>
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#E8ECF3" stroke-width="0.5"/>
+    </pattern>
+    <pattern id="gridFine" width="8" height="8" patternUnits="userSpaceOnUse">
+      <path d="M 8 0 L 0 0 0 8" fill="none" stroke="#F1F4F9" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+
+  <rect width="1600" height="900" fill="#FFFFFF"/>
+  <rect width="1600" height="900" fill="url(#gridFine)"/>
+  <rect width="1600" height="900" fill="url(#grid)"/>
+
+  <ellipse cx="800" cy="0" rx="940" ry="360" fill="#EEF4FF" opacity="0.5"/>
+
+  <g stroke="#D2D7E0" stroke-width="1.5" fill="none">
+    <path d="M 0 28 V 0 H 28"/>
+    <path d="M 1572 0 H 1600 V 28"/>
+    <path d="M 1600 872 V 900 H 1572"/>
+    <path d="M 28 900 H 0 V 872"/>
+  </g>
+
+  <g stroke="#D2D7E0" stroke-width="1">
+    <line x1="56" y1="16" x2="1544" y2="16"/>
+    <line x1="56" y1="11" x2="56" y2="21"/><line x1="304" y1="11" x2="304" y2="21"/><line x1="552" y1="11" x2="552" y2="21"/>
+    <line x1="800" y1="11" x2="800" y2="21"/><line x1="1048" y1="11" x2="1048" y2="21"/><line x1="1296" y1="11" x2="1296" y2="21"/>
+    <line x1="1544" y1="11" x2="1544" y2="21"/>
+  </g>
+
+  <text x="64" y="66" fill="#0052D9" font-size="15" letter-spacing="4" font-weight="600">THREE SELF-DEVELOPED SYSTEMS</text>
+  <text x="64" y="124" fill="#0B0F19" font-size="58" font-weight="700" letter-spacing="1">三大自研技术体系</text>
+  <text x="64" y="162" fill="#4E5969" font-size="21">身份互联 · 全栈工程 · 企业级云 —— 三层各自独立，接口定在体系内部，产品只写业务逻辑。</text>
+  <circle cx="1530" cy="66" r="3.5" fill="#0052D9"/>
+  <line x1="1506" y1="66" x2="1524" y2="66" stroke="#0052D9" stroke-width="1"/>
+  <text x="1498" y="71" text-anchor="end" fill="#4E5969" font-size="14" letter-spacing="2">SYSTEM MAP</text>
+
+  <!-- ═══ 产品层 ═══ -->
+  <rect x="56" y="196" width="1488" height="138" rx="16" fill="#F6F7F9" stroke="#E5E8EF" stroke-width="1"/>
+  <rect x="56" y="196" width="6" height="138" fill="url(#barGrad)"/>
+  <text x="96" y="248" fill="#0B0F19" font-size="32" font-weight="700">产品层</text>
+  <text x="96" y="280" fill="#0052D9" font-size="17" font-weight="600" letter-spacing="2">PRODUCTS</text>
+  <text x="96" y="308" fill="#4E5969" font-size="15.5">从三层能力长出的业务形态</text>
+
+  <g font-size="17" fill="#0B0F19">
+    <g><rect x="320" y="223" width="159" height="84" rx="11" fill="#FFFFFF" stroke="#E5E8EF" stroke-width="1"/><circle cx="338" cy="257" r="3.5" fill="#00A870"/><text x="350" y="263">E时代IDE</text><text x="350" y="291" fill="#4E5969" font-size="13">UEF</text></g>
+    <g><rect x="528" y="223" width="159" height="84" rx="11" fill="#FFFFFF" stroke="#E5E8EF" stroke-width="1"/><circle cx="546" cy="257" r="3.5" fill="#00A870"/><text x="558" y="263">E时代云服务</text><text x="558" y="291" fill="#4E5969" font-size="13">CEP</text></g>
+    <g><rect x="736" y="223" width="159" height="84" rx="11" fill="#FFFFFF" stroke="#E5E8EF" stroke-width="1"/><circle cx="754" cy="257" r="3.5" fill="#00A870"/><text x="766" y="263">WeAuth 微验</text><text x="766" y="291" fill="#4E5969" font-size="13">CEP</text></g>
+    <g><rect x="944" y="223" width="159" height="84" rx="11" fill="#FFFFFF" stroke="#E5E8EF" stroke-width="1"/><circle cx="962" cy="257" r="3.5" fill="#00A870"/><text x="974" y="263">E时代云数据库</text><text x="974" y="291" fill="#4E5969" font-size="13">CEP</text></g>
+    <g><rect x="1152" y="223" width="159" height="84" rx="11" fill="#FFFFFF" stroke="#E5E8EF" stroke-width="1"/><circle cx="1170" cy="257" r="3.5" fill="#00A870"/><text x="1182" y="263">E时代云存储</text><text x="1182" y="291" fill="#4E5969" font-size="13">CEP</text></g>
+    <g><rect x="1360" y="223" width="159" height="84" rx="11" fill="#FFFFFF" stroke="#E5E8EF" stroke-width="1"/><circle cx="1378" cy="257" r="3.5" fill="#00A870"/><text x="1390" y="263">E时代信任中心</text><text x="1390" y="291" fill="#4E5969" font-size="13">HEC</text></g>
+  </g>
+
+  <!-- ═══ HEC 层 ═══ -->
+  <rect x="56" y="352" width="1488" height="138" rx="16" fill="#F6F7F9" stroke="#E5E8EF" stroke-width="1"/>
+  <rect x="56" y="352" width="6" height="138" fill="url(#barGrad)"/>
+  <text x="96" y="394" fill="#0B0F19" font-size="38" font-weight="700">HEC</text>
+  <text x="96" y="422" fill="#4E5969" font-size="17">全域互联与统一授权</text>
+  <text x="96" y="444" fill="#4E5969" font-size="13">Hyper Evolution Connect</text>
+  <rect x="96" y="454" width="104" height="25" rx="12.5" fill="#EEF4FF" stroke="#0052D9" stroke-width="1"/>
+  <text x="148" y="471" text-anchor="middle" fill="#0052D9" font-size="14" font-weight="600">身份与授权</text>
+
+  <g font-size="19" fill="#0B0F19">
+    <g><rect x="320" y="379" width="227" height="84" rx="11" fill="#FFFFFF" stroke="#E5E8EF" stroke-width="1"/><text x="342" y="419" font-weight="600">统一登录 SSO</text><text x="342" y="447" fill="#4E5969" font-size="14">一次认证，全站通行</text></g>
+    <g><rect x="563.25" y="379" width="227" height="84" rx="11" fill="#FFFFFF" stroke="#E5E8EF" stroke-width="1"/><text x="585.25" y="419" font-weight="600">OAuth 2.0 授权</text><text x="585.25" y="447" fill="#4E5969" font-size="14">标准协议，第三方可接入</text></g>
+    <g><rect x="806.5" y="379" width="227" height="84" rx="11" fill="#FFFFFF" stroke="#E5E8EF" stroke-width="1"/><text x="828.5" y="419" font-weight="600">审计日志</text><text x="828.5" y="447" fill="#4E5969" font-size="14">每次授权均可回溯</text></g>
+    <g><rect x="1049.75" y="379" width="227" height="84" rx="11" fill="#FFFFFF" stroke="#E5E8EF" stroke-width="1"/><text x="1071.75" y="419" font-weight="600">风险控制</text><text x="1071.75" y="447" fill="#4E5969" font-size="14">异常登录及时拦截</text></g>
+    <g><rect x="1293" y="379" width="227" height="84" rx="11" fill="#FFFFFF" stroke="#E5E8EF" stroke-width="1"/><text x="1315" y="419" font-weight="600">多系统接入</text><text x="1315" y="447" fill="#4E5969" font-size="14">跨产品共用一份身份</text></g>
+  </g>
+
+  <!-- ═══ UEF 层 ═══ -->
+  <rect x="56" y="508" width="1488" height="138" rx="16" fill="#F6F7F9" stroke="#E5E8EF" stroke-width="1"/>
+  <rect x="56" y="508" width="6" height="138" fill="url(#barGrad)"/>
+  <text x="96" y="550" fill="#0B0F19" font-size="38" font-weight="700">UEF</text>
+  <text x="96" y="578" fill="#4E5969" font-size="17">AI 驱动的全栈执行架构</text>
+  <text x="96" y="600" fill="#4E5969" font-size="13">Ultra Evolution Framework</text>
+  <rect x="96" y="610" width="92" height="25" rx="12.5" fill="#EEF4FF" stroke="#0052D9" stroke-width="1"/>
+  <text x="142" y="627" text-anchor="middle" fill="#0052D9" font-size="14" font-weight="600">工程与 AI</text>
+
+  <g font-size="19" fill="#0B0F19">
+    <g><rect x="320" y="535" width="227" height="84" rx="11" fill="#FFFFFF" stroke="#E5E8EF" stroke-width="1"/><text x="342" y="575" font-weight="600">交互层</text><text x="342" y="603" fill="#4E5969" font-size="14">Web · 移动端 · API</text></g>
+    <g><rect x="563.25" y="535" width="227" height="84" rx="11" fill="#FFFFFF" stroke="#E5E8EF" stroke-width="1"/><text x="585.25" y="575" font-weight="600">编排层</text><text x="585.25" y="603" fill="#4E5969" font-size="14">注册 · 编排 · 灰度</text></g>
+    <g><rect x="806.5" y="535" width="227" height="84" rx="11" fill="#FFFFFF" stroke="#E5E8EF" stroke-width="1"/><text x="828.5" y="575" font-weight="600">运行时层</text><text x="828.5" y="603" fill="#4E5969" font-size="14">编译 · 部署 · 协作</text></g>
+    <g><rect x="1049.75" y="535" width="227" height="84" rx="11" fill="#FFFFFF" stroke="#E5E8EF" stroke-width="1"/><text x="1071.75" y="575" font-weight="600">治理层</text><text x="1071.75" y="603" fill="#4E5969" font-size="14">策略 · 审计 · 安全</text></g>
+    <g><rect x="1293" y="535" width="227" height="84" rx="11" fill="#EEF4FF" stroke="#0052D9" stroke-width="1.5"/><circle cx="1315" cy="559" r="3.5" fill="#0052D9"/><text x="1327" y="565" fill="#0052D9" font-weight="600">AI Engine · RAG</text><text x="1315" y="603" fill="#4E5969" font-size="14">大模型能力工程化落地</text></g>
+  </g>
+
+  <!-- ═══ CEP 层 ═══ -->
+  <rect x="56" y="664" width="1488" height="138" rx="16" fill="#F6F7F9" stroke="#E5E8EF" stroke-width="1"/>
+  <rect x="56" y="664" width="6" height="138" fill="url(#barGrad)"/>
+  <text x="96" y="706" fill="#0B0F19" font-size="38" font-weight="700">CEP</text>
+  <text x="96" y="734" fill="#4E5969" font-size="17">企业级云能力平台</text>
+  <text x="96" y="756" fill="#4E5969" font-size="13">Cloud Evolution Platform</text>
+  <rect x="96" y="766" width="104" height="25" rx="12.5" fill="#EEF4FF" stroke="#0052D9" stroke-width="1"/>
+  <text x="148" y="783" text-anchor="middle" fill="#0052D9" font-size="14" font-weight="600">数据与存储</text>
+
+  <g font-size="19" fill="#0B0F19">
+    <g><rect x="320" y="691" width="227" height="84" rx="11" fill="#FFFFFF" stroke="#E5E8EF" stroke-width="1"/><text x="342" y="731" font-weight="600">云数据库 ECD</text><text x="342" y="759" fill="#4E5969" font-size="14">MySQL · PostgreSQL</text></g>
+    <g><rect x="563.25" y="691" width="227" height="84" rx="11" fill="#FFFFFF" stroke="#E5E8EF" stroke-width="1"/><text x="585.25" y="731" font-weight="600">云存储 EOSS</text><text x="585.25" y="759" fill="#4E5969" font-size="14">对象存储 · 文件桶</text></g>
+    <g><rect x="806.5" y="691" width="227" height="84" rx="11" fill="#FFFFFF" stroke="#E5E8EF" stroke-width="1"/><text x="828.5" y="731" font-weight="600">人机验证 WeAuth</text><text x="828.5" y="759" fill="#4E5969" font-size="14">PoW · 风险识别</text></g>
+    <g><rect x="1049.75" y="691" width="227" height="84" rx="11" fill="#FFFFFF" stroke="#E5E8EF" stroke-width="1"/><text x="1071.75" y="731" font-weight="600">弹性调度</text><text x="1071.75" y="759" fill="#4E5969" font-size="14">混合负载自动伸缩</text></g>
+    <g><rect x="1293" y="691" width="227" height="84" rx="11" fill="#FFFFFF" stroke="#E5E8EF" stroke-width="1"/><text x="1315" y="731" font-weight="600">统一控制面</text><text x="1315" y="759" fill="#4E5969" font-size="14">资源 · 用量 · 监控</text></g>
+  </g>
+
+  <!-- 底部指标条与署名行已删（用户：「示意图的这些东西都不要」）——
+       数字指标不再出现在图里，避免与页头重复。 -->
+</svg>

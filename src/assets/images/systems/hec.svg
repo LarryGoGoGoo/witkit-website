@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" font-family="'PingFang SC','HarmonyOS Sans SC','Microsoft YaHei',-apple-system,'Segoe UI',sans-serif" role="img" aria-label="HEC 全域互联与统一授权体系架构图">
+  <title>HEC 全域互联与统一授权体系架构图</title>
+  <desc>E时代通行证居中，六条授权链路辐射到 IDE、云服务、云数据库、云存储、WeAuth 与信任中心，构成全域互联与统一授权链路。</desc>
+
+  <!-- ⚠️ 图内字号必须按「实际显示宽度」定，不能按画布定。
+       这张图在 1440 视口下渲染宽 823px、画布 1600 → 缩放 0.514。
+       所以画布内 22px 的字，读者眼里只有 11.3px；原先写 13px 的注释只有 6.7px，必糊。
+       本图最小字号锁定 22px（屏幕 ≈ 11.3px），改任何字号前先算这一步。
+       另外：页面右侧文字列已经承载了体系名、定位、指标与能力清单，
+       图内**不再重复**这些内容（原先图里那三列能力卡与页面清单撞名、图里那套指标与页面指标完全重复，
+       已删）—— 省下的整幅右半张用来把拓扑图放大。
+       布局用**横向椭圆环**而不是正圆：画布是 16:10 的扁矩形，正圆环横向只能占一半宽、
+       左右各空一大条；椭圆环把六个节点摊到 x 130–1470，横向铺满。 -->
+  <defs>
+    <linearGradient id="hubGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0052D9"/><stop offset="1" stop-color="#0043B5"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#EEF4FF" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#EEF4FF" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#E8ECF3" stroke-width="0.5"/>
+    </pattern>
+    <pattern id="gridFine" width="8" height="8" patternUnits="userSpaceOnUse">
+      <path d="M 8 0 L 0 0 0 8" fill="none" stroke="#F1F4F9" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="#0052D9" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <rect width="1600" height="1000" fill="#FFFFFF"/>
+  <rect width="1600" height="1000" fill="url(#gridFine)"/>
+  <rect width="1600" height="1000" fill="url(#grid)"/>
+  <ellipse cx="800" cy="500" rx="740" ry="470" fill="url(#glow)"/>
+
+  <!-- 六个节点：**横向椭圆环**（不是正圆环）。
+       画布是 16:10 的扁矩形，正圆环横向只能占一半宽、左右各空一大条。
+       六个节点按 30° 等分摊在椭圆上，长轴铺到 x 250–1350（上下各留 105 边距），
+       整个环的外接框是 1100×790 ≈ 1.4:1，与画布同向。
+       节点坐标由椭圆参数方程算出（a=550, b=395, 中心 800,500）：
+         -90° → (800, 105)      IDE
+         -30° → (1276, 303)     云服务
+          30° → (1276, 698)     云数据库
+          90° → (800, 895)      云存储
+         150° → (324, 698)      WeAuth
+        -150° → (324, 303)      信任中心 -->
+  <g stroke="#0052D9" stroke-width="2" opacity="0.28" stroke-dasharray="6 8">
+    <line x1="800" y1="500" x2="800" y2="197"/>
+    <line x1="800" y1="500" x2="1196" y2="365"/>
+    <line x1="800" y1="500" x2="1196" y2="635"/>
+    <line x1="800" y1="500" x2="800" y2="803"/>
+    <line x1="800" y1="500" x2="404" y2="635"/>
+    <line x1="800" y1="500" x2="404" y2="365"/>
+  </g>
+  <g stroke="#0052D9" stroke-width="2.4">
+    <line x1="800" y1="352" x2="800" y2="202" marker-end="url(#arr)"/>
+    <line x1="990" y1="425" x2="1120" y2="384" marker-end="url(#arr)"/>
+    <line x1="990" y1="575" x2="1120" y2="616" marker-end="url(#arr)"/>
+    <line x1="800" y1="648" x2="800" y2="798" marker-end="url(#arr)"/>
+    <line x1="610" y1="575" x2="480" y2="616" marker-end="url(#arr)"/>
+    <line x1="610" y1="425" x2="480" y2="384" marker-end="url(#arr)"/>
+  </g>
+
+  <!-- 中心：E时代通行证。虚线椭圆是「轨道」—— 与节点所在椭圆同心同比例缩小。 -->
+  <ellipse cx="800" cy="500" rx="300" ry="215" fill="none" stroke="#0052D9" stroke-width="1.4" stroke-dasharray="7 9" opacity="0.42"/>
+  <ellipse cx="800" cy="500" rx="248" ry="178" fill="url(#hubGrad)"/>
+  <ellipse cx="800" cy="500" rx="248" ry="178" fill="none" stroke="#0052D9" stroke-width="1.8"/>
+  <text x="800" y="476" text-anchor="middle" fill="#FFFFFF" font-size="58" font-weight="700">E时代通行证</text>
+  <text x="800" y="526" text-anchor="middle" fill="#DCE8FF" font-size="33">统一登录 · 统一授权</text>
+  <text x="800" y="572" text-anchor="middle" fill="#FFFFFF" font-size="28" letter-spacing="3">SSO / OAuth 2.0</text>
+
+  <!-- 六个外围节点 -->
+  <g font-size="33" fill="#0B0F19" text-anchor="middle">
+    <g><circle cx="800" cy="105" r="92" fill="#FFFFFF" stroke="#D2D7E0" stroke-width="1.6"/><circle cx="800" cy="105" r="92" fill="none" stroke="#0052D9" stroke-width="1.4" opacity="0.4"/><text x="800" y="115">IDE</text></g>
+    <g><circle cx="1276" cy="303" r="92" fill="#FFFFFF" stroke="#D2D7E0" stroke-width="1.6"/><text x="1276" y="313">云服务</text></g>
+    <g><circle cx="1276" cy="698" r="92" fill="#FFFFFF" stroke="#D2D7E0" stroke-width="1.6"/><text x="1276" y="708">云数据库</text></g>
+    <g><circle cx="800" cy="895" r="92" fill="#FFFFFF" stroke="#D2D7E0" stroke-width="1.6"/><text x="800" y="905">云存储</text></g>
+    <g><circle cx="324" cy="698" r="92" fill="#FFFFFF" stroke="#D2D7E0" stroke-width="1.6"/><text x="324" y="708">WeAuth</text></g>
+    <g><circle cx="324" cy="303" r="92" fill="#FFFFFF" stroke="#D2D7E0" stroke-width="1.6"/><text x="324" y="313">信任中心</text></g>
+  </g>
+</svg>

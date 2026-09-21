@@ -1,0 +1,45 @@
+# ── 依赖与构建产物 ──
+node_modules/
+dist/
+.vite-cache/
+.vite-old/
+.vite-temp/
+.vue-global-types/
+
+# ── 校验脚本的临时输出（重跑即重新生成，不进仓库）──
+*.log
+.check*.txt
+.*-out.txt
+.anim.txt
+.biome.txt
+.build.txt
+.ca.txt
+.diag.txt
+.final-check.txt
+.i18n.txt
+.i18n-todo.txt
+.links.txt
+.msw.txt
+.portdiag.txt
+.ports.txt
+.probe.txt
+.scan.txt
+.svc.txt
+.v.txt
+.verify*.txt
+_hero-ids.json
+
+# ── 工作过程目录：截图存档、废弃素材、图片海选池 ──
+# 这些都是「做图过程中产生的东西」，体积大且随时可能删，
+# 源码只保留 src/assets/images 下已经定稿的成品图。
+.shots/
+.archive/
+图片海选/
+图片精选/
+图片精配/
+图片素材候选/
+架构图候选/
+
+# ── 系统 ──
+.DS_Store
+Thumbs.db

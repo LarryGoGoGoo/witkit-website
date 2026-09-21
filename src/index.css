@@ -1,0 +1,332 @@
+@import "tailwindcss";
+
+/* Token 变量（生成物，勿手改。改色值请改 src/styles/tokens.json） */
+@import "./styles/tokens.css";
+
+@theme {
+  --font-sans: "PingFang SC", "HarmonyOS Sans SC", "Microsoft YaHei",
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+}
+
+/* ═══════════ 重置 ═══════════ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-base);
+  line-height: var(--font-line-height-normal);
+  color: var(--color-ink);
+  background: var(--color-bg);
+  overflow-x: hidden;
+}
+
+img,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+:focus-visible {
+  outline: var(--a11y-focus-w) solid var(--color-accent);
+  outline-offset: var(--a11y-focus-offset);
+  border-radius: var(--radius-sm);
+}
+
+/* 大数字统一等宽，避免滚动时抖动 */
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ═══════════ 布局 ═══════════ */
+.container-page {
+  width: 100%;
+  max-width: var(--layout-w-content);
+  margin: 0 auto;
+  padding: 0 var(--layout-pad);
+}
+
+/* 区块：大厂靠留白，不靠装饰 */
+.section {
+  padding: var(--space-9) 0;
+}
+
+.section-tight {
+  padding: var(--space-8) 0;
+}
+
+.section-subtle {
+  background: var(--color-bg-subtle);
+}
+
+.section-ink {
+  background: var(--color-bg-ink);
+  color: var(--color-ink-inverse);
+}
+
+/* 区块头：中文小标签 + 大标题 + 描述，不用等宽大写字母 */
+.section-head {
+  max-width: var(--layout-w-prose);
+  margin-bottom: var(--space-8);
+}
+
+/* 曾经有一个 .section-head-center（居中版式区块头），2026-09-19 删掉。
+   删的原因有两层：
+   ① 用户明确否过居中 —— 看过腾讯关于页后要求「关于我们」的区块标题左对齐
+      （原话："看看腾讯字体安排，不是在正中心"）；
+   ② 唯一还在用它的「首页产品矩阵」也已整块移除，于是它彻底没有引用。
+   以后真的需要居中版式时再写，别提前养着。 */
+
+.section-label {
+  display: inline-block;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  letter-spacing: var(--font-letter-spacing-wide);
+  color: var(--color-accent);
+  margin-bottom: var(--space-3);
+}
+
+.section-title {
+  font-size: clamp(30px, 3.6vw, var(--font-size-4xl));
+  font-weight: 600;
+  line-height: var(--font-line-height-tight);
+  letter-spacing: var(--font-letter-spacing-tight);
+  color: var(--color-ink);
+}
+
+.section-title--inverse {
+  color: var(--color-ink-inverse);
+}
+
+.section-desc {
+  margin-top: var(--space-4);
+  max-width: var(--layout-w-prose);
+  font-size: var(--font-size-lg);
+  line-height: var(--font-line-height-relaxed);
+  /* 区块导语用主文字黑（用户：类似位置的小字要黑一点）。
+     原来 ink-secondary #4E5969 跟标题差一档、读起来发灰。 */
+  color: var(--color-ink);
+}
+
+.section-desc--inverse {
+  color: var(--color-ink-inverse-dim);
+}
+
+/* ═══════════ 按钮 ═══════════ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: var(--a11y-tap-min);
+  padding: 0 var(--space-6);
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  border-radius: var(--radius-md);
+  white-space: nowrap;
+  transition: background-color var(--motion-duration-fast)
+    var(--motion-ease-out), border-color var(--motion-duration-fast)
+    var(--motion-ease-out), color var(--motion-duration-fast)
+    var(--motion-ease-out);
+}
+
+.btn-primary {
+  background: var(--color-accent);
+  color: var(--color-ink-inverse);
+}
+
+.btn-primary:hover {
+  background: var(--color-accent-hover);
+}
+
+.btn-secondary {
+  background: var(--color-bg);
+  color: var(--color-ink);
+  border: 1px solid var(--color-line-strong);
+}
+
+.btn-secondary:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+/* 文字链接：箭头随 hover 位移，是克制的「活着」的反馈 */
+.link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  color: var(--color-accent);
+}
+
+/* 居中版式里的「更多 →」：蓝色、居中、放在导语下面，比左对齐的链接更有存在感 */
+.link-more {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--color-accent);
+}
+
+.link-arrow svg,
+.link-arrow .arrow,
+.link-more svg,
+.link-more .arrow {
+  transition: transform var(--motion-duration-fast) var(--motion-ease-out);
+}
+
+.link-arrow:hover .arrow,
+.link-more:hover .arrow {
+  transform: translateX(3px);
+}
+
+/* ═══════════ 卡片 ═══════════ */
+.card {
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+  transition: border-color var(--motion-duration-fast) var(--motion-ease-out),
+    box-shadow var(--motion-duration-normal) var(--motion-ease-out), transform
+    var(--motion-duration-normal) var(--motion-ease-out);
+}
+
+/* 悬浮态：卡片整体上浮一档 + 阴影加深，让「图片和文字跟着凸起」。
+   只用 translateY，不动 scale —— 缩放会让里面的截图/文字比例发虚，
+   上浮更干净利落，也更接近「卡片悬浮」的直觉。 */
+.card-hover:hover {
+  border-color: var(--color-line-strong);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-6px);
+}
+
+/* ═══════════ 标签 ═══════════ */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px var(--space-3);
+  font-size: var(--font-size-xs);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-subtle);
+  color: var(--color-ink-tertiary);
+}
+
+.tag-accent {
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
+  font-weight: 500;
+}
+
+/* ═══════════ 滚动渐入（唯一保留的动效） ═══════════ */
+.reveal-hidden {
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 520ms var(--motion-ease-out), transform 520ms
+    var(--motion-ease-out);
+}
+
+/* ═══════════ 滚动条 ═══════════ */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-line-strong);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-ink-tertiary);
+}
+
+/* ═══════════ 动效降级 ═══════════ */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal-hidden {
+    opacity: 1;
+    transform: none;
+  }
+  .reveal-visible {
+    transition: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ═══════════ 响应式 ═══════════ */
+@media (max-width: 768px) {
+  .section {
+    padding: var(--space-8) 0;
+  }
+  .section-head {
+    margin-bottom: var(--space-6);
+  }
+  .section-title {
+    font-size: var(--font-size-3xl);
+  }
+  .section-desc {
+    font-size: var(--font-size-base);
+    margin-top: var(--space-3);
+  }
+}
+
+@media (max-width: 480px) {
+  .section-title {
+    font-size: var(--font-size-2xl);
+  }
+  .btn {
+    width: 100%;
+  }
+}

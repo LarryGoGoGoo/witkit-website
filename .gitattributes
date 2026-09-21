@@ -1,0 +1,15 @@
+# 统一行尾：文本文件一律存 LF。
+# 为什么要写死：Windows 上编辑器默认 CRLF，不锁的话同一个人换台机器改一个文件，
+# git 会把整文件标成「已修改」（实际只有行尾变了），diff 全是红的，真正的改动被淹没。
+* text=auto eol=lf
+
+# 图片是二进制，别做行尾转换，也别在 diff 里当文本处理
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.webp binary
+*.svg  text eol=lf
+*.ico  binary
+
+# 锁文件自动生成、内容里也没有需要合并的语义，不进 diff
+package-lock.json -diff linguist-generated

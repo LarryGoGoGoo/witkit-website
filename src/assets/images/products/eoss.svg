@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 450" font-family="'PingFang SC','HarmonyOS Sans SC','Microsoft YaHei',-apple-system,'Segoe UI',sans-serif" role="img" aria-label="E时代云存储">
+  <title>E时代云存储</title>
+
+  <!-- 与 ecd.svg / trust.svg 共用同一套坐标，产品页里图标与文字严格一条线。
+       副标题「企业级对象存储服务」取自 EOSS 控制台真实界面标语，非杜撰。 -->
+  <rect width="720" height="450" fill="#FFFFFF"/>
+
+  <!-- 图标容器 -->
+  <rect x="64" y="165" width="120" height="120" rx="28" fill="#EEF4FF"/>
+
+  <!-- 云朵图标 -->
+  <g transform="translate(88,189) scale(3)" fill="none" stroke="#0052D9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>
+  </g>
+
+  <!-- 名称 + 副标题 -->
+  <text x="224" y="215" font-size="34" font-weight="700" fill="#0B0F19">E时代云存储</text>
+  <text x="224" y="255" font-size="21" fill="#4E5969">企业级对象存储服务</text>
+</svg>
