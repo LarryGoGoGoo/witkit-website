@@ -3,6 +3,9 @@
  *
  * 判据：最暗像素 > 120 说明这个字在屏幕上已经糊到看不清；
  *       修复前 uef/cep 的芯片标签就在这个区间。
+ *
+ * ⚠️ 每张图的显示宽度是不一样的，必须分开给。早先这里写死 823 对所有图一视同仁，
+ *    结果把通栏的 overview.svg（实际满宽）也按 823 算，报出一堆假阳性。
  */
 import { readFileSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
@@ -15,7 +18,18 @@ const FILES = [
   "systems/hec.svg",
   "services/overview.svg",
 ];
-const DISPLAY_W = 823; // 1440 视口下 /services 上的实际显示宽度
+
+/* 每张图在页面上的实际显示宽度（px），Playwright 实测。
+   取 1366 视口（常见笔记本下限）而不是 1440，宁可低估不高估。
+   · systems/*.svg 在 /services 的图列里（栅格 2.4fr : 1fr，容器 1400）→ 887px@1440，约 840px@1366
+   · services/overview.svg 是页面顶部通栏图，宽度≈视口宽 → 1440px@1440，取 1366
+   ⚠️ 改了 /services 的栅格比例或容器宽度，这几个数得重新实测，否则结论整体偏移。 */
+const DISPLAY_W = {
+  "systems/uef.svg": 840,
+  "systems/cep.svg": 840,
+  "systems/hec.svg": 840,
+  "services/overview.svg": 1366,
+};
 
 const browser = await chromium.launch();
 const page = await browser.newPage({ viewport: { width: 1200, height: 900 } });
@@ -38,13 +52,24 @@ for (const f of FILES) {
     const displayH = vb.height * scale;
 
     /* 先把每个 text 的 bbox 与样式取出来（光栅化之前，避免 clone 后丢失） */
+    /* fill 色的理论亮度。后面拿它跟实测最暗像素比：
+       笔画够粗够清晰时，最暗像素应该正好落在 fill 色附近；
+       被抗锯齿糊掉或半透明叠加时，最暗像素会明显偏亮（往白底方向跑）。 */
+    const lumOf = (css) => {
+      const m = css.match(/\d+/g);
+      if (!m || m.length < 3) return 0;
+      return 0.299 * m[0] + 0.587 * m[1] + 0.114 * m[2];
+    };
+
     const items = [...svg.querySelectorAll("text")].map((t) => {
       const b = t.getBBox();
       const cs = getComputedStyle(t);
       return {
         text: (t.textContent ?? "").slice(0, 18),
         fill: cs.fill,
+        fillLum: Math.round(lumOf(cs.fill)),
         stroke: cs.stroke,
+        fontSize: Number.parseFloat(cs.fontSize) || 0,
         x: b.x,
         y: b.y,
         w: b.width,
@@ -94,25 +119,38 @@ for (const f of FILES) {
       rows.push({
         text: it.text,
         fill: it.fill,
+        fillLum: it.fillLum,
         stroke: it.stroke,
+        fontSize: Math.round(it.fontSize * 10) / 10,
+        /* 这个字在读者屏幕上实际占多少 px —— 比画布字号更能说明问题 */
+        screenPx: Math.round(it.fontSize * scale * 10) / 10,
         minLum: Math.round(min),
         avgLum: Math.round(sum / n),
       });
     }
     return { scale: +scale.toFixed(3), rows };
-  }, DISPLAY_W);
+  }, DISPLAY_W[f]);
 
-  const bad = out.rows.filter((r) => r.minLum > 120);
-  const soft = out.rows.filter((r) => r.minLum > 80 && r.minLum <= 120);
+  /* 判据：实测最暗像素比该字的理论色亮出 40 以上，说明笔画根本没落到位 ——
+     要么被描边 / 半透明糊住，要么字号小到抗锯齿把笔画抹平了。
+     早先这里写的是「最暗 > 120」，但那是绝对阈值：
+     #4E5969 的亮度本来就是 88，一个渲染得完美无缺的 #4E5969 字会被它判成「偏灰」，
+     每跑一次就刷一屏假警报，真问题反而淹在里面。改成跟 fill 色比才有意义。 */
+  const gap = (r) => r.minLum - r.fillLum;
+  const bad = out.rows.filter((r) => gap(r) > 40);
+  const soft = out.rows.filter((r) => gap(r) > 18 && gap(r) <= 40);
   const stroked = out.rows.filter((r) => r.stroke !== "none");
+  const minScreenPx = Math.min(...out.rows.map((r) => r.screenPx));
 
-  console.log(`\n########## ${f}   缩放 ${out.scale}`);
   console.log(
-    `  text 总数 ${out.rows.length}｜仍带 stroke 的 ${stroked.length}｜糊（最暗>120）${bad.length}｜偏灰(80~120) ${soft.length}`,
+    `\n########## ${f}   显示宽 ${DISPLAY_W[f]}px   缩放 ${out.scale}`,
+  );
+  console.log(
+    `  text 总数 ${out.rows.length}｜仍带 stroke 的 ${stroked.length}｜糊（实测比理论色亮 40+）${bad.length}｜偏浅(18~40) ${soft.length}｜最小屏幕字号 ${minScreenPx}px`,
   );
   for (const r of [...bad, ...soft].slice(0, 12)) {
     console.log(
-      `    ${r.text.padEnd(20)} fill=${r.fill.padEnd(18)} stroke=${r.stroke.padEnd(18)} 最暗=${r.minLum}`,
+      `    ${r.text.padEnd(20)} fill=${r.fill.padEnd(18)} 画布${String(r.fontSize).padStart(5)}px → 屏${String(r.screenPx).padStart(5)}px   理论${String(r.fillLum).padStart(3)} 实测最暗${String(r.minLum).padStart(3)} 差${String(gap(r)).padStart(4)}`,
     );
   }
   summary[f] = {
@@ -120,6 +158,7 @@ for (const f of FILES) {
     stroked: stroked.length,
     bad: bad.length,
     soft: soft.length,
+    minScreenPx,
   };
 }
 

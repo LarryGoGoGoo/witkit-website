@@ -10,14 +10,25 @@
  *     ② 出框：包围盒超出「包含它的最小矩形」（也就是它所在的那张卡片）→ 报 error
  *     ③ 可读性：按实际显示宽度换算屏幕字号，低于 11px 提示（图纸类图表的下限）
  *
- * 用法：node scripts/witkit-svg-fit.mjs [显示宽 默认 823]
+ * 用法：node scripts/witkit-svg-fit.mjs [显示宽]   ← 不给就按下面的实测表
  * 依赖 dev server 不需要 —— 直接读 src/assets/images 下的 .svg 文件。
+ *
+ * ⚠️ 越界 / 出框的判定只看画布内坐标，跟显示宽度无关；显示宽只影响「屏幕字号」那行提示。
+ *    但提示不准一样会误导人，所以这里按文件给实测值，跟 witkit-svg-legibility.mjs 同一套。
  */
 import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { chromium } from "playwright";
 
-const DISPLAY_W = Number(process.argv[2] || 823);
+/* Playwright 实测（1366 视口，取常见笔记本下限）：
+   · /services 的 systems/*.svg 在图列里 → 840
+   · /services 顶部的 overview.svg 是通栏图 → 1366
+   · 其余（products/*）按低一档估 840
+   改了页面栅格或容器宽度要重测，否则「屏幕字号」提示会整体偏移。 */
+function displayWOf(file) {
+  if (file.endsWith("services/overview.svg")) return 1366;
+  return Number(process.argv[2] || 840);
+}
 const IMG_DIR = "src/assets/images";
 
 function collect(dir, out = []) {
@@ -40,6 +51,7 @@ for (const file of files) {
   const vb = /viewBox="([^"]+)"/.exec(svg);
   if (!vb) continue;
   const [, , vbW, vbH] = vb[1].trim().split(/\s+/).map(Number);
+  const DISPLAY_W = displayWOf(file);
   const scale = DISPLAY_W / vbW;
 
   /* 用一个真 HTML 文档承载：SVG 直接当文档时没有可靠的面板度量环境 */
